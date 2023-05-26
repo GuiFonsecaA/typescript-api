@@ -1,4 +1,4 @@
-import { Beach } from "@src/models/beach";
+import { Beach } from '@src/models/beach';
 
 describe('Beaches functional tests', () => {
   beforeAll(async () => await Beach.deleteMany({}));
@@ -28,7 +28,7 @@ describe('Beaches functional tests', () => {
       expect(response.body).toEqual({
         error:
           'Beach validation failed: lat: Cast to Number failed for value "invalid_string" (type string) at path "lat"',
-        });
+      });
     });
     it.skip('should return 500 when there is any error other than validation error', async () => {
       //TODO think in a way to throw a 500
