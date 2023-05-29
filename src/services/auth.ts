@@ -1,4 +1,8 @@
 import bcrypt from 'bcrypt';
+import config, { IConfig } from 'config';
+import  jwt from 'jsonwebtoken';
+
+const authConfig: IConfig = config.get('App.auth');
 
 export default class AuthService {
 
@@ -8,5 +12,11 @@ export default class AuthService {
     
     public static async comparePasswords(password: string, hashedPassword:string): Promise<boolean> {
         return await bcrypt.compare(password, hashedPassword);
+    }
+
+    public static generateToken(payload: object): string {
+        return jwt.sign(payload, `${authConfig.get('key')}` , {
+            expiresIn: authConfig.get('tokenExpiresIn'),
+        });
     }
 }
