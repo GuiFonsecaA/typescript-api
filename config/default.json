@@ -2,7 +2,7 @@
     "App": {
         "port": 3000,
         "database": {
-            "mongoUrl": "mongodb://0.0.0.0:27017/surf-forecast"
+            "mongoUrl": "mongodb+srv://gfonseca:0lou2Pev1j4y9Dty@ts-api.aki2l2b.mongodb.net/surf-forecast?retryWrites=true&w=majority"
         },
         "auth": {
             "key": "some-key",
