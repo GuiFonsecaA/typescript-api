@@ -9,10 +9,10 @@ describe('Beaches functional tests', () => {
     password: '1234',
   };
   let token: string;
-  beforeEach(async() => {
+  beforeEach(async () => {
     await Beach.deleteMany({});
     await User.deleteMany({});
-    const user = await new User(defaultUser).save(); 
+    const user = await new User(defaultUser).save();
     token = AuthService.generateToken(user.toJSON());
   });
   describe('When creating a beach', () => {
@@ -25,9 +25,9 @@ describe('Beaches functional tests', () => {
       };
 
       const response = await global.testRequest
-      .post('/beaches')
-      .set({'x-acess-token': token})
-      .send(newBeach);
+        .post('/beaches')
+        .set({ 'x-acess-token': token })
+        .send(newBeach);
       expect(response.status).toBe(201);
       expect(response.body).toEqual(expect.objectContaining(newBeach));
     });
@@ -39,9 +39,9 @@ describe('Beaches functional tests', () => {
         position: 'E',
       };
       const response = await global.testRequest
-      .post('/beaches')
-      .set({'x-acess-token': token})
-      .send(newBeach);
+        .post('/beaches')
+        .set({ 'x-acess-token': token })
+        .send(newBeach);
 
       expect(response.status).toBe(422);
       expect(response.body).toEqual({

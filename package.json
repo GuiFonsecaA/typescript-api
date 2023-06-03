@@ -6,8 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/index.js",
-    "start:dev": "ts-node-dev src/index.ts",
-    "start:local": "ts-node-dev --transpile-only src/index.ts  | pino-pretty -c",
+    "start:local": "yarn build && ts-node-dev --transpile-only src/index.ts | pino-pretty -c",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "test": "yarn test:unit && yarn test:functional",

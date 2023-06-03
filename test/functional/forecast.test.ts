@@ -44,8 +44,8 @@ describe('Beach forecast functional tests', () => {
       })
       .reply(200, stormGlassWeather3HoursFixture);
     const { body, status } = await global.testRequest
-    .get('/forecast')
-    .set({'x-acess-token': token});
+      .get('/forecast')
+      .set({ 'x-acess-token': token });
     expect(status).toBe(200);
     expect(body).toEqual(apiForecastResponse1BeachFixture);
   });
@@ -62,8 +62,8 @@ describe('Beach forecast functional tests', () => {
       .replyWithError('Something went wrong');
 
     const { status } = await global.testRequest
-    .get(`/forecast`)
-    .set({'x-acess-token': token});
+      .get(`/forecast`)
+      .set({ 'x-acess-token': token });
     expect(status).toBe(500);
   });
 });
