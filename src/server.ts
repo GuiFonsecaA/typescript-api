@@ -4,6 +4,10 @@ import { Application } from 'express';
 import bodyParser from 'body-parser';
 import httpPino from 'pino-http';
 import cors from 'cors';
+import apiSchema from './api.schema.json';
+import swaggerUI from 'swagger-ui-express';
+import * as OpenApiValidator from 'express-openapi-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 import { ForecastController } from './controllers/forecast';
 import * as database from '@src/database';
 import { BeachesController } from './controllers/beaches';
@@ -17,6 +21,7 @@ export class SetupServer extends Server {
 
   public async init(): Promise<void> {
     this.setupExpress();
+    await this.docsSetup();
     this.setupControllers();
     await this.databaseSetup();
   }
@@ -43,6 +48,14 @@ export class SetupServer extends Server {
     ]);
   }
 
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUI.serve, swaggerUI.setup(apiSchema));
+    this.app.use(OpenApiValidator.middleware({
+      apiSpec: apiSchema as OpenAPIV3.Document,
+      validateRequests: true,
+      validateResponses: true,
+    }));
+  }
   public getApp(): Application {
     return this.app;
   }
