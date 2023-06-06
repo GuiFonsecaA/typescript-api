@@ -6,7 +6,7 @@ export function authMiddleware(
   res: Partial<Response>,
   next: NextFunction
 ): void {
-  const token = req.headers?.['x-acess-token'];
+  const token = req.headers?.['x-access-token'];
   try {
     const decoded = AuthService.decodeToken(token as string);
     req.decoded = decoded;

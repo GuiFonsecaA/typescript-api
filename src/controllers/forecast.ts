@@ -4,6 +4,7 @@ import { Beach } from '@src/models/beach';
 import { Forecast } from '@src/services/forecast';
 import { Request, Response } from 'express';
 import { BaseController } from '.';
+import logger from '@src/logger';
 
 const forecast = new Forecast();
 

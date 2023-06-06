@@ -38,7 +38,7 @@ process.on('uncaughtExeption', (error) => {
       })
     );
   } catch (error) {
-    logger.error(`App exite4d with error: ${error}`);
+    logger.error(`App exited with error: ${error}`);
     process.exit(ExitStatus.Failure);
   }
 })();

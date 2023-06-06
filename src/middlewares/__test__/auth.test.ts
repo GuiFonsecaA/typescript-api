@@ -6,7 +6,7 @@ describe('AuthMiddleware', () => {
     const jwtToken = AuthService.generateToken({ data: 'fake' });
     const reqFake = {
       headers: {
-        'x-acess-token': jwtToken,
+        'x-access-token': jwtToken,
       },
     };
     const resFake = {};
@@ -18,7 +18,7 @@ describe('AuthMiddleware', () => {
   it('should return UNAUTHORIZED if there is a problem on the token verification', () => {
     const reqFake = {
       headers: {
-        'x-acess-token': 'invalid token',
+        'x-access-token': 'invalid token',
       },
     };
     const sendMock = jest.fn();
