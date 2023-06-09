@@ -47,12 +47,12 @@ export class UsersController extends BaseController {
   public async me(req: Request, res: Response): Promise<Response> {
     const email = req.decoded ? req.decoded.email : undefined;
     const user = await User.findOne({ email });
-    if(!user) {
+    if (!user) {
       return this.sendErrorResponse(res, {
         code: 404,
-        message: 'User not found!'
+        message: 'User not found!',
       });
     }
-    return res.send({user});
+    return res.send({ user });
   }
 }

@@ -18,13 +18,17 @@ const waveHeigths = {
 
 export class Rating {
   constructor(private beach: Beach) {}
-  public getRateForPoint (point: ForecastPoint): number {
+  public getRateForPoint(point: ForecastPoint): number {
     const sweelDirection = this.getPositionFromLocation(point.swellDirection);
     const windDirection = this.getPositionFromLocation(point.windDirection);
-    const windAndWaveRating = this.getRatingBasedOnWindAndWavePositions(sweelDirection, windDirection);
+    const windAndWaveRating = this.getRatingBasedOnWindAndWavePositions(
+      sweelDirection,
+      windDirection
+    );
     const swellHeigthRating = this.getRatingForSwellSize(point.swellHeight);
     const swellPeriodRating = this.getRatingForSwellPeriod(point.swellPeriod);
-    const finalRating = (windAndWaveRating + swellHeigthRating + swellPeriodRating) / 3;
+    const finalRating =
+      (windAndWaveRating + swellHeigthRating + swellPeriodRating) / 3;
     return Math.round(finalRating);
   }
   public getRatingBasedOnWindAndWavePositions(
