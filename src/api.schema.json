@@ -253,9 +253,24 @@
                   "$ref": "#/components/schemas/Error"
                 },
                 "example": {
-                  "message": "Error getting beach data",
+                  "message": "Error getting forecast data",
                   "code": "400",
                   "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized getting the forecast data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Unauthorized getting forecast data",
+                  "code": "401",
+                  "error": "Unauthorized"
                 }
               }
             }
