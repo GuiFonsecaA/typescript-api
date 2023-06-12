@@ -4,6 +4,9 @@ import config, { IConfig } from 'config';
 import jwt from 'jsonwebtoken';
 
 const authConfig: IConfig = config.get('App.auth');
+const key: string = process.env.JWT_SECRET_KEY ?? authConfig.get('key');
+const tokenExpiresIn: string =
+  process.env.JWT_TOKEN_EXPIRES_IN ?? authConfig.get('tokenExpiresIn');
 
 export interface DecodedUser extends Omit<User, '_id'> {
   id: string;
@@ -25,12 +28,12 @@ export default class AuthService {
   }
 
   public static generateToken(payload: object): string {
-    return jwt.sign(payload, `${authConfig.get('key')}`, {
-      expiresIn: authConfig.get('tokenExpiresIn'),
+    return jwt.sign(payload, key, {
+      expiresIn: tokenExpiresIn,
     });
   }
 
   public static decodeToken(token: string): DecodedUser {
-    return jwt.verify(token, `${authConfig.get('key')}`) as DecodedUser;
+    return jwt.verify(token, key) as DecodedUser;
   }
 }
